@@ -130,8 +130,34 @@ SELECT * movies_tbl.title, main_actors_tbl.name
 FROM movies_tbl
   JOIN movie_actors_tbl ON movies_tbl.id = movie_actors_tbl.movie_id
   JOIN main_actors_tbl ON main_actors_tbl.id = movie_actors_tbl.main_actor_id
-WHERE movies_tbl.title LIKE "Avatar";
+WHERE movies_tbl.title LIKE 'Avatar';
+
+
+
+
 
 #homework data extract
 
+#list all actors born before 1980 
+SELECT  main_actors_tbl.name, year_of_birth
+FROM main_actors_tbl
+WHERE main_actors_tbl.year_of_birth < '1980-01-01'; #fyi I stayed 40 minutes to figure out an error. I was writting movie_actors_tbl instead of main_actors_tbl.
 
+#How many movies did Nolan direct ?
+SELECT movies_tbl.director_id, directors_tbl.name
+FROM movies_tbl
+INNER JOIN directors_tbl ON movies_tbl.director_id=directors_tbl.id
+WHERE movies_tbl.director_id LIKE '2';
+
+#Among all the movies of James Cameron, how many were female actors ?
+#How many directors did Leonardo DiCaprio worked with ?
+
+#Who is the oldest director ?
+SELECT * FROM directors_tbl;
+
+SELECT directors_tbl.name
+FROM directors_tbl
+ORDER BY directors_tbl.year_of_birth
+limit 1;
+
+#What is the earliest movie of the oldest director ?
