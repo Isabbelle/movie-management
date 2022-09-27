@@ -12,7 +12,7 @@ app.config["MYSQL_HOST"]= "127.0.0.1"
 app.config["MYSQL_USER"] = "root"
 #!!!!!!!!!!!!normaly we dont define passwords in config files!!!!!!!!!!!
 app.config["MYSQL_PASSWORD"] ="my-password"
-app.config["MYSQL_DB"] ="movies_tbl"
+app.config["MYSQL_DB"] ="movies_db"
 
 #Example of route. github.com is the hostname but the root is the part after the slash. that s what we're goin to define. 
 #think of react, when I used to define the root of the page "homepage" and then other pages that open up

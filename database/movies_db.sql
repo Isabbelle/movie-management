@@ -161,3 +161,10 @@ ORDER BY directors_tbl.year_of_birth
 limit 1;
 
 #What is the earliest movie of the oldest director ?
+
+
+
+
+
+
+#What is the latest movie of the youngest actor ?
