@@ -1,6 +1,6 @@
 import json 
 
-from flask import Flask   
+from flask import Flask, render_template   
 #flask is a module of python. 
 from flask_mysqldb import MySQL
   
@@ -12,7 +12,7 @@ app.config["MYSQL_HOST"]= "127.0.0.1"
 app.config["MYSQL_USER"] = "root"
 #!!!!!!!!!!!!normaly we dont define passwords in config files!!!!!!!!!!!
 app.config["MYSQL_PASSWORD"] ="my-password"
-app.config["MYSQL_DB"] ="movies_db"
+app.config["MYSQL_DB"] ="movie_db"
 
 #Example of route. github.com is the hostname but the root is the part after the slash. that s what we're goin to define. 
 #think of react, when I used to define the root of the page "homepage" and then other pages that open up
@@ -30,6 +30,15 @@ def hello_world():
     #so we need to specify what we want to run it in an entry point of the python script
 
 #this entry point is defined like this:
+@app.route("/movies/")
+def list_movies():                            
+    cursor = mysql.connection.cursor()            
+    query_string = "SELECT * FROM movies_tbl"
+    cursor.execute(query_string)                    
+    data = cursor.fetchall()                
+    cursor.close()                            
+    return json.dumps(data)  
+
 @app.route("/movies-table/")
 def list_movie_table():                            #cursor= working with all the relational databases is the property of the connection where we are able to manipu;ate the data
     cursor = mysql.connection.cursor()            
@@ -37,14 +46,14 @@ def list_movie_table():                            #cursor= working with all the
     cursor.execute(query_string)                    #using the cursor execute the sql statement
     data = cursor.fetchall()                 #get everything from exected query .fetchall()
     cursor.close()    #should close the connection 
-    return json.dumps(data) 
+    return render_template("movies.html", movies_data=data)    
 
 #Internal Server Error
 #The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
 # we defined a query but we didnt define the data base that we want to "querry" see line 10
 if __name__=="__main__": 
     app.run(host="127.0.0.1")
-    #you can also open python terminal and run flask app but this is more straight forward
+    #you can also open python terminal and run flask app, but this is more straight forward
 
 #lets display the db and add the movie list :p, we can use the mysql module and we're going to import it 
 #i want a specific route to list 
