@@ -1,5 +1,9 @@
-<p>Have a look on our movie list</p>
+
 <table>
+<tr>
+    <th>Title</th>
+    <th>Year</th>
+</tr>
     {% for movie in movies_data %} 
 <tr>
     <td>
@@ -8,7 +12,7 @@
     <td>
         {{movie[2]}}
     </td>
-    
+
 </tr>
 {% endfor %}
 </table>
