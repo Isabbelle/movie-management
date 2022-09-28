@@ -3,8 +3,12 @@
     {% for movie in movies_data %} 
 <tr>
     <td>
-        {{movie}}
+        {{movie[1]}}
     </td>
+    <td>
+        {{movie[2]}}
+    </td>
+    
 </tr>
 {% endfor %}
 </table>
